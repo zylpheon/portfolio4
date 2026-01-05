@@ -62,7 +62,7 @@ body {
     width: 80px;
     height: 2px;
     background: linear-gradient(90deg, rgba(255, 215, 0, 0.8), transparent);
-    transform: rotate(45deg);
+    transform: translateX(-80px) translateY(-80px) rotate(-45deg);
     transform-origin: right center;
 }
 
@@ -146,50 +146,49 @@ body {
     color: #FFD700;
     background: linear-gradient(90deg,
             #FFD700 0%,
-            #FFD700 40%,
             #FFFFFF 50%,
-            #FFD700 60%,
             #FFD700 100%);
     background-size: 200% 100%;
-    background-position: -100% 0;
+    background-position: 0% 0;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shine-move 4s ease-in-out infinite;
+    text-shadow:
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.6),
+        0 0 60px rgba(255, 215, 0, 0.4);
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+}
+
+.shine-text:hover {
+    animation: shine-move 1.5s linear infinite, neon-pulse 2s ease-in-out infinite alternate;
 }
 
 @keyframes shine-move {
-
-    0%,
-    100% {
-        background-position: -100% 0;
+    0% {
+        background-position: -200% 0;
     }
 
-    50% {
+    100% {
         background-position: 200% 0;
     }
 }
 
-.shine-text::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            transparent 40%,
-            rgba(255, 255, 255, 0.9) 50%,
-            transparent 60%,
-            transparent 100%);
-    background-size: 200% 100%;
-    background-position: -200% 0;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine-move 3s linear infinite;
-    z-index: 1;
+@keyframes neon-pulse {
+    from {
+        text-shadow:
+            0 0 20px rgba(255, 215, 0, 0.8),
+            0 0 40px rgba(255, 215, 0, 0.6),
+            0 0 60px rgba(255, 215, 0, 0.4);
+    }
+
+    to {
+        text-shadow:
+            0 0 30px rgba(255, 215, 0, 1),
+            0 0 60px rgba(255, 215, 0, 0.8),
+            0 0 90px rgba(255, 215, 0, 0.6);
+    }
 }
 
 .social-icon {

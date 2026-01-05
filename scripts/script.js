@@ -118,10 +118,11 @@ function updateActiveNav() {
         const href = link.getAttribute('href').substring(1);
         if (href === current) {
             const linkRect = link.getBoundingClientRect();
-            const navRect = link.parentElement.parentElement.getBoundingClientRect();
+            const parentUl = link.closest('ul');
+            const ulRect = parentUl.getBoundingClientRect();
 
             navIndicator.style.width = linkRect.width + 'px';
-            navIndicator.style.left = (linkRect.left - navRect.left) + 'px';
+            navIndicator.style.left = (linkRect.left - ulRect.left) + 'px';
         }
     });
 }
