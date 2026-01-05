@@ -18,6 +18,7 @@ window.addEventListener('scroll', () => {
         welcomeContent.style.opacity = opacity;
     }
 });
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -30,11 +31,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
 const expandBtn = document.getElementById('expand-btn');
 const expandText = document.getElementById('expand-text');
 const expandIcon = document.getElementById('expand-icon');
 const certificateItems = document.querySelectorAll('.certificate-item');
 let isExpanded = false;
+
 expandBtn.addEventListener('click', () => {
     isExpanded = !isExpanded;
     certificateItems.forEach((item, index) => {
@@ -46,6 +49,7 @@ expandBtn.addEventListener('click', () => {
             }
         }
     });
+
     if (isExpanded) {
         expandText.textContent = 'Show Less';
         expandIcon.classList.add('rotated');
@@ -54,6 +58,7 @@ expandBtn.addEventListener('click', () => {
         expandIcon.classList.remove('rotated');
     }
 });
+
 const contactForm = document.getElementById('contact-form');
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -64,6 +69,7 @@ contactForm.addEventListener('submit', (e) => {
     const mailtoLink = `mailto:lrv94451@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
     window.location.href = mailtoLink;
 });
+
 function createStars() {
     const starsContainer = document.getElementById('stars-container');
     const numberOfStars = 200;
@@ -80,33 +86,47 @@ function createStars() {
         starsContainer.appendChild(star);
     }
 }
+
 function createShootingStar() {
     const shootingStarsContainer = document.getElementById('shooting-stars-container');
     const shootingStar = document.createElement('div');
     shootingStar.className = 'shooting-star';
-    const startX = Math.random() * 50;
-    const startY = Math.random() * 30;
+
+    // Posisi awal di area kiri atas hingga kanan atas
+    const startX = Math.random() * 70;
+    const startY = Math.random() * 40;
+
     shootingStar.style.left = startX + '%';
     shootingStar.style.top = startY + '%';
-    const duration = Math.random() * 1 + 1.5;
+
+    const duration = Math.random() * 0.8 + 1.2; // Durasi 1.2-2 detik
     shootingStar.style.animation = `shooting ${duration}s linear`;
+
     shootingStarsContainer.appendChild(shootingStar);
+
     setTimeout(() => {
         shootingStar.remove();
     }, duration * 1000);
 }
+
 createStars();
+
+// Bintang jatuh muncul lebih sering
 setInterval(() => {
-    if (Math.random() < 0.3) {
+    if (Math.random() < 0.5) { // 50% chance setiap interval
         createShootingStar();
     }
-}, 2000);
+}, 1000); // Setiap 1 detik
+
+// Navigation indicator
 const navLinks = document.querySelectorAll('.nav-link');
 const navIndicator = document.querySelector('.nav-indicator');
 const sections = document.querySelectorAll('section[id]');
+
 function updateActiveNav() {
     let current = '';
     const scrollPosition = window.scrollY + 100;
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
@@ -114,17 +134,30 @@ function updateActiveNav() {
             current = section.getAttribute('id');
         }
     });
-    navLinks.forEach((link, index) => {
+
+    navLinks.forEach((link) => {
         const href = link.getAttribute('href').substring(1);
         if (href === current) {
+            // Ambil posisi link relatif terhadap parent ul
             const linkRect = link.getBoundingClientRect();
             const parentUl = link.closest('ul');
             const ulRect = parentUl.getBoundingClientRect();
 
+            // Hitung posisi yang tepat
+            const leftPosition = linkRect.left - ulRect.left;
+
             navIndicator.style.width = linkRect.width + 'px';
-            navIndicator.style.left = (linkRect.left - ulRect.left) + 'px';
+            navIndicator.style.left = leftPosition + 'px';
         }
     });
 }
-window.addEventListener('load', updateActiveNav);
+
+// Inisialisasi saat halaman dimuat
+window.addEventListener('load', () => {
+    updateActiveNav();
+});
+
 window.addEventListener('scroll', updateActiveNav);
+
+// Update juga saat resize window
+window.addEventListener('resize', updateActiveNav);
