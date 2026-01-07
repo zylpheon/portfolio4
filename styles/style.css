@@ -88,6 +88,16 @@ body {
     }
 }
 
+#welcome {
+    position: relative;
+    z-index: 1;
+}
+
+#welcome-content {
+    position: relative;
+    z-index: 2;
+}
+
 .navbar-blur {
     backdrop-filter: blur(5px);
     background-color: rgba(0, 0, 0, 0.7);
@@ -270,6 +280,10 @@ footer {
     z-index: 10;
 }
 
+nav {
+    z-index: 50 !important;
+}
+
 nav ul {
     position: relative;
 }
@@ -290,12 +304,61 @@ nav ul {
 }
 
 #mobile-menu {
-    z-index: 40;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transform: none;
+    top: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 45;
 }
 
 #mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 50;
+}
+
+#menu-icon {
     position: relative;
+    transition: all 0.3s ease;
+}
+
+#menu-icon.fa-bars {
+    animation: rotateIn 0.3s ease;
+}
+
+#menu-icon.fa-times {
+    animation: rotateOut 0.3s ease;
+}
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(90deg) scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes rotateOut {
+    0% {
+        transform: rotate(-90deg) scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
 }
 
 .mobile-nav-link {
@@ -304,9 +367,17 @@ nav ul {
     transition: all 0.3s ease;
 }
 
-#mobile-menu.active .mobile-nav-link {
+#mobile-menu.active {
+    max-height: 500px;
     opacity: 1;
-    transform: translateY(0);
+}
+
+#mobile-menu ul {
+    padding: 2rem 0;
+}
+
+#mobile-menu.active .mobile-nav-link {
+    animation: slideDown 0.4s ease forwards;
 }
 
 #mobile-menu.active .mobile-nav-link:nth-child(1) {
@@ -335,6 +406,18 @@ nav ul {
 
 #mobile-menu.active .mobile-nav-link:nth-child(7) {
     transition-delay: 0.7s;
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
@@ -382,5 +465,21 @@ nav ul {
     section {
         padding-top: 3rem;
         padding-bottom: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #mobile-menu-btn {
+        display: none !important;
+    }
+
+    #mobile-menu {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    #mobile-menu-btn {
+        display: flex !important;
     }
 }
