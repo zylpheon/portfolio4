@@ -154,3 +154,53 @@ window.addEventListener('load', () => {
 
 window.addEventListener('scroll', updateActiveNav);
 window.addEventListener('resize', updateActiveNav);
+
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuIcon = document.getElementById('menu-icon');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+let isMobileMenuOpen = false;
+
+mobileMenuBtn.addEventListener('click', () => {
+    isMobileMenuOpen = !isMobileMenuOpen;
+
+    if (isMobileMenuOpen) {
+        mobileMenu.style.transform = 'translateY(0)';
+        mobileMenu.classList.add('active');
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-times');
+        document.body.style.overflow = 'hidden';
+    } else {
+        mobileMenu.style.transform = 'translateY(-100%)';
+        mobileMenu.classList.remove('active');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Close mobile menu when clicking on a link
+mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.style.transform = 'translateY(-100%)';
+        mobileMenu.classList.remove('active');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        isMobileMenuOpen = false;
+        document.body.style.overflow = 'auto';
+    });
+});
+
+// Close mobile menu when window is resized to desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && isMobileMenuOpen) {
+        mobileMenu.style.transform = 'translateY(-100%)';
+        mobileMenu.classList.remove('active');
+        menuIcon.classList.remove('fa-times');
+        menuIcon.classList.add('fa-bars');
+        isMobileMenuOpen = false;
+        document.body.style.overflow = 'auto';
+    }
+});
