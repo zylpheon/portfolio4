@@ -1,10 +1,8 @@
-// Welcome section scroll effects
 window.addEventListener('scroll', () => {
     const welcomeContent = document.getElementById('welcome-content');
     const scrollPosition = window.scrollY;
     const welcomeSection = document.getElementById('welcome');
     const welcomeHeight = welcomeSection.offsetHeight;
-
     if (scrollPosition < welcomeHeight) {
         const scale = 1 + (scrollPosition / welcomeHeight) * 0.5;
         const blur = (scrollPosition / welcomeHeight) * 10;
@@ -14,8 +12,6 @@ window.addEventListener('scroll', () => {
         welcomeContent.style.opacity = opacity;
     }
 });
-
-// Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();

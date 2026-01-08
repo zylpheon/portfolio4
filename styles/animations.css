@@ -1,4 +1,3 @@
-/* Stars and shooting stars animations */
 @keyframes twinkle {
 
     0%,
@@ -31,7 +30,6 @@
     }
 }
 
-/* Text effects animations */
 @keyframes neon-glow-navbar {
     from {
         text-shadow:
@@ -86,7 +84,6 @@
     }
 }
 
-/* Mobile menu animations */
 @keyframes rotateIn {
     0% {
         transform: rotate(90deg) scale(0);

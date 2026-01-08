@@ -1,4 +1,3 @@
-/* Welcome section */
 #welcome {
     position: relative;
     z-index: 1;
@@ -9,7 +8,6 @@
     z-index: 2;
 }
 
-/* Text effects */
 .neon-text-navbar {
     text-shadow:
         0 0 3px #FFD700,
@@ -48,7 +46,6 @@
     animation: shine-move 1.5s linear infinite, neon-pulse 2s ease-in-out infinite alternate;
 }
 
-/* Social icons */
 .social-icon {
     transition: all 0.3s ease;
 }
@@ -57,7 +54,6 @@
     transform: translateY(-5px) scale(1.1);
 }
 
-/* Hover underline effect */
 .hover-underline-animation {
     display: inline-block;
     position: relative;
@@ -89,7 +85,6 @@
     transform-origin: bottom center;
 }
 
-/* Card hover effect */
 .card-hover {
     transition: all 0.3s ease;
 }
@@ -99,7 +94,6 @@
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
 }
 
-/* Expand button */
 .expand-btn {
     transition: all 0.3s ease;
 }
