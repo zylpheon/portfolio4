@@ -1,0 +1,41 @@
+/* Base styles and layout */
+body {
+    background-color: #000000;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow-x: hidden;
+}
+
+nav,
+section,
+footer {
+    position: relative;
+    z-index: 10;
+}
+
+nav {
+    z-index: 50 !important;
+}
+
+footer {
+    position: relative;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Color utilities */
+.text-gold {
+    color: #FFD700;
+}
+
+.bg-gold {
+    background-color: #FFD700;
+}
+
+.border-gold {
+    border-color: #FFD700;
+}
+
+.hover-gold:hover {
+    color: #FFD700;
+}

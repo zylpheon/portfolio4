@@ -1,0 +1,109 @@
+/* Welcome section */
+#welcome {
+    position: relative;
+    z-index: 1;
+}
+
+#welcome-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Text effects */
+.neon-text-navbar {
+    text-shadow:
+        0 0 3px #FFD700,
+        0 0 6px #FFD700;
+    animation: neon-glow-navbar 2s ease-in-out infinite alternate;
+}
+
+.neon-text-subtle {
+    text-shadow:
+        0 0 3px #FFD700,
+        0 0 6px #FFD700;
+    animation: neon-glow-subtle 2s ease-in-out infinite alternate;
+}
+
+.shine-text {
+    position: relative;
+    color: #FFD700;
+    background: linear-gradient(90deg,
+            #FFD700 0%,
+            #FFFFFF 50%,
+            #FFD700 100%);
+    background-size: 200% 100%;
+    background-position: 0% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow:
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.6),
+        0 0 60px rgba(255, 215, 0, 0.4);
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+    transition: all 0.3s ease;
+}
+
+.shine-text:hover {
+    animation: shine-move 1.5s linear infinite, neon-pulse 2s ease-in-out infinite alternate;
+}
+
+/* Social icons */
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+}
+
+/* Hover underline effect */
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+}
+
+.hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.hover-underline-animation.center::after {
+    transform-origin: bottom center;
+}
+
+.hover-underline-animation.center:hover::after {
+    transform-origin: bottom center;
+}
+
+/* Card hover effect */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+/* Expand button */
+.expand-btn {
+    transition: all 0.3s ease;
+}
+
+.expand-btn.rotated {
+    transform: rotate(180deg);
+}
