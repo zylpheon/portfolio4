@@ -3,43 +3,35 @@ const mobileMenu = document.getElementById('mobile-menu');
 const menuIcon = document.getElementById('menu-icon');
 const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 let isMobileMenuOpen = false;
-mobileMenuBtn.addEventListener('click', () => {
+
+function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
+
+    mobileMenu.classList.toggle('active', isMobileMenuOpen);
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'auto';
+
+    // Toggle icon dengan delay untuk animasi yang smooth
+    setTimeout(() => {
+        menuIcon.classList.toggle('fa-bars', !isMobileMenuOpen);
+        menuIcon.classList.toggle('fa-times', isMobileMenuOpen);
+    }, 150);
+}
+
+function closeMobileMenu() {
     if (isMobileMenuOpen) {
-        mobileMenu.classList.add('active');
-        setTimeout(() => {
-            menuIcon.classList.remove('fa-bars');
-            menuIcon.classList.add('fa-times');
-        }, 150);
-        document.body.style.overflow = 'hidden';
-    } else {
-        mobileMenu.classList.remove('active');
-        setTimeout(() => {
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-        }, 150);
-        document.body.style.overflow = 'auto';
+        toggleMobileMenu();
     }
-});
+}
+
+// Event listeners
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
 mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-        setTimeout(() => {
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-        }, 150);
-        isMobileMenuOpen = false;
-        document.body.style.overflow = 'auto';
-    });
+    link.addEventListener('click', closeMobileMenu);
 });
+
 window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768 && isMobileMenuOpen) {
-        mobileMenu.classList.remove('active');
-        setTimeout(() => {
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
-        }, 150);
-        isMobileMenuOpen = false;
-        document.body.style.overflow = 'auto';
+    if (window.innerWidth >= 768) {
+        closeMobileMenu();
     }
 });

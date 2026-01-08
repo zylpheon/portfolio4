@@ -32,29 +32,21 @@
 
 @keyframes neon-glow-navbar {
     from {
-        text-shadow:
-            0 0 3px #FFD700,
-            0 0 6px #FFD700;
+        text-shadow: 0 0 3px #FFD700, 0 0 6px #FFD700;
     }
 
     to {
-        text-shadow:
-            0 0 5px #FFD700,
-            0 0 10px #FFD700;
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
     }
 }
 
 @keyframes neon-glow-subtle {
     from {
-        text-shadow:
-            0 0 3px #FFD700,
-            0 0 6px #FFD700;
+        text-shadow: 0 0 3px #FFD700, 0 0 6px #FFD700;
     }
 
     to {
-        text-shadow:
-            0 0 5px #FFD700,
-            0 0 10px #FFD700;
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
     }
 }
 
@@ -81,41 +73,5 @@
             0 0 30px rgba(255, 215, 0, 1),
             0 0 60px rgba(255, 215, 0, 0.8),
             0 0 90px rgba(255, 215, 0, 0.6);
-    }
-}
-
-@keyframes rotateIn {
-    0% {
-        transform: rotate(90deg) scale(0);
-        opacity: 0;
-    }
-
-    100% {
-        transform: rotate(0deg) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes rotateOut {
-    0% {
-        transform: rotate(-90deg) scale(0);
-        opacity: 0;
-    }
-
-    100% {
-        transform: rotate(0deg) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes slideDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
     }
 }

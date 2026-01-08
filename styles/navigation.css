@@ -1,9 +1,4 @@
 .navbar-blur {
-    backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-nav.scrolled {
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.85);
 }
@@ -27,11 +22,11 @@ nav ul {
     color: #FFD700;
 }
 
+/* Mobile Menu Styles */
 #mobile-menu {
     height: auto;
     max-height: 0;
     overflow: hidden;
-    transform: none;
     top: 100%;
     left: 0;
     right: 0;
@@ -59,14 +54,6 @@ nav ul {
 #menu-icon {
     position: relative;
     transition: all 0.3s ease;
-}
-
-#menu-icon.fa-bars {
-    animation: rotateIn 0.3s ease;
-}
-
-#menu-icon.fa-times {
-    animation: rotateOut 0.3s ease;
 }
 
 .mobile-nav-link {

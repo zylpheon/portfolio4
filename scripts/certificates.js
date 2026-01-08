@@ -3,22 +3,18 @@ const expandText = document.getElementById('expand-text');
 const expandIcon = document.getElementById('expand-icon');
 const certificateItems = document.querySelectorAll('.certificate-item');
 let isExpanded = false;
+
 expandBtn.addEventListener('click', () => {
     isExpanded = !isExpanded;
+
+    // Toggle visibility untuk item setelah index 2 (item ke-4 dst)
     certificateItems.forEach((item, index) => {
         if (index >= 3) {
-            if (isExpanded) {
-                item.classList.remove('hidden');
-            } else {
-                item.classList.add('hidden');
-            }
+            item.classList.toggle('hidden', !isExpanded);
         }
     });
-    if (isExpanded) {
-        expandText.textContent = 'Show Less';
-        expandIcon.classList.add('rotated');
-    } else {
-        expandText.textContent = 'Show More';
-        expandIcon.classList.remove('rotated');
-    }
+
+    // Update button text dan icon
+    expandText.textContent = isExpanded ? 'Show Less' : 'Show More';
+    expandIcon.classList.toggle('rotated', isExpanded);
 });
