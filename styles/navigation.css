@@ -30,16 +30,23 @@ nav ul {
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.98);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.92);
+    /* Slightly smaller blur for mobile menu to make content clearer */
+    backdrop-filter: blur(5px);
     transition: max-height 0.4s ease, opacity 0.3s ease;
     opacity: 0;
     z-index: 60;
 }
 
 #mobile-menu ul {
-    padding: 2rem 1.5rem;
+    padding: 1rem 1rem;
     align-items: flex-start !important;
+    /* reduce vertical spacing between items (override Tailwind space-y-6) */
+    gap: 0.25rem;
+}
+
+#mobile-menu ul > li {
+    margin: 0.25rem 0 !important;
 }
 
 #mobile-menu-btn {
@@ -60,13 +67,34 @@ nav ul {
     opacity: 0;
     transform: translateX(-20px);
     transition: all 0.3s ease;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     width: 100%;
     text-align: left;
-    font-size: 1.25rem !important;
+    /* override larger Tailwind text classes on mobile */
+    font-size: 1rem !important;
+    /* default color for mobile links (override Tailwind text-gold) */
+    color: #ffffff !important;
     position: relative;
     overflow: hidden;
+}
+
+/* Dot before each mobile nav link. Uses currentColor so it follows active/inactive color. */
+.mobile-nav-link::before {
+    content: '• ';
+    margin-right: 0.3rem;
+    color: currentColor;
+}
+
+/* Active mobile link styling: gold color and underline */
+.mobile-nav-link.active {
+    color: #FFD700 !important;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+.mobile-nav-link.active::after {
+    content: '';
 }
 
 .mobile-nav-link::before {
@@ -92,10 +120,31 @@ nav ul {
 }
 
 #mobile-menu.active {
-    max-height: 600px;
+    /* Use viewport-relative height so the menu doesn't cover more than ~48% */
+    max-height: 48vh;
     opacity: 1;
     border-top: 2px solid #FFD700;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Overlay used to dim the page when mobile menu is open. It sits under the navbar and mobile menu. */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 45;
+    pointer-events: none;
+}
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Dim the navbar slightly when menu is open to give focus to menu/navbar */
+.navbar.dimmed {
+    filter: brightness(0.85);
 }
 
 #mobile-menu.active .mobile-nav-link {

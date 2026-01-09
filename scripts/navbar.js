@@ -19,11 +19,16 @@ function updateActiveNav() {
     navLinks.forEach((link) => {
         link.classList.remove('active');
     });
+    // also remove active from mobile nav links
+    document.querySelectorAll('.mobile-nav-link').forEach((link) => link.classList.remove('active'));
 
     navLinks.forEach((link) => {
         const href = link.getAttribute('href').substring(1);
         if (href === current) {
             link.classList.add('active');
+            // also mark corresponding mobile nav link active (if present)
+            const mobileMatch = document.querySelector(`.mobile-nav-link[href="#${href}"]`);
+            if (mobileMatch) mobileMatch.classList.add('active');
             const linkRect = link.getBoundingClientRect();
             const firstLinkRect = navLinks[0].getBoundingClientRect();
             const leftPosition = linkRect.left - firstLinkRect.left;
